@@ -30,22 +30,6 @@ from .serializers import VenueSerializer, EventSerializer
 #    time.sleep(1)
 #job()
 
-#class VenueList(generics.ListAPIView):
-#  queryset = Venue.objects.all()
-#  serializer_class = VenueSerializer
-
-#class VenueDetail(generics.RetrieveAPIView):
-#  queryset = Venue.objects.all()
-#  serializer_class = VenueSerializer
-
-#class EventList(generics.ListAPIView):
-#  queryset = Event.objects.all()
-#  serializer_class = EventSerializer
-
-#class EventDetail(generics.RetrieveAPIView):
-#  queryset = Event.objects.all()
-#  serializer_class = EventSerializer
-
 class VenueListView(APIView):
     def get(self, request):
         venues = Venue.objects.all()
@@ -63,9 +47,14 @@ class VenueDetailView(APIView):
 
 class EventListView(APIView):
     def get(self, request):
-      events = Event.objects.order_by('event_date')
-      serializer = EventSerializer(events, many=True)
-      return Response(serializer.data, status=status.HTTP_200_OK)
+        # Get the offset from query parameters (default to 0 if not provided)
+        offset = int(request.query_params.get('offset', 0))
+        
+        # Retrieve events starting from the specified offset
+        events = Event.objects.filter(event_date__gte=datetime.now()).order_by('event_date')[offset:offset + 12]
+        
+        serializer = EventSerializer(events, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 class EventDetailView(APIView):
     def get(self, request, event_id):
