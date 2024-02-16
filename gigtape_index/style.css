@@ -1,0 +1,125 @@
+body {
+    background-color: rgb(38, 41, 38);
+    color: orange;
+}
+
+.navi-container {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    border: 0;
+    background-color: black;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.navi-bar {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.link {
+    color: orange;
+    font-weight: 1000;    
+}
+
+.header {
+    height: 318px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.header-img {
+    position: relative;
+    background-image: url(./images/header_img.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 956px;
+    height: 318px;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    font-size: large;
+}
+
+.event-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-left: 15%;
+    padding-right: 15%;
+    border: 1px;
+
+}
+
+.event-card {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    width: 30%;
+    padding-bottom: 20px;
+    height: 20em;
+    border: 1px solid rgb(151, 98, 0);
+    border-radius: 10px;
+    overflow: visible;
+}
+
+.load-more-button {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+#load-more-button {
+    display: inline-block;
+    padding: 0.3em 1.2em;
+    border: 0.3em solid black;
+    border-radius: 2em;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #000000;
+    background-color: orange;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+#load-more-button:hover {
+    cursor: pointer;
+    color: #FFFFFF;
+    background-color: rgb(151, 98, 0);
+}
+
+.event-card:hover {
+    cursor: pointer;
+    border-color: orange;
+}
+
+.event-img {
+    background-color: rgb(38, 41, 38);
+    height: 70%;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.event-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 10px
+}
+
+.event-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(38, 41, 38);
+    height: 30%;
+    color: orange;
+    border-radius: 0px 0px 10px 10px;
+}
