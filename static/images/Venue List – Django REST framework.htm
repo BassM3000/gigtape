@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html><head>
+    
+
+      
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="robots" content="NONE,NOARCHIVE">
+      
+
+      <title>Venue List – Django REST framework</title>
+
+      
+        
+          <link rel="stylesheet" type="text/css" href="Venue%20List%20%E2%80%93%20Django%20REST%20framework_tiedostot/bootstrap.min.css">
+          <link rel="stylesheet" type="text/css" href="Venue%20List%20%E2%80%93%20Django%20REST%20framework_tiedostot/bootstrap-tweaks.css">
+        
+
+        <link rel="stylesheet" type="text/css" href="Venue%20List%20%E2%80%93%20Django%20REST%20framework_tiedostot/prettify.css">
+        <link rel="stylesheet" type="text/css" href="Venue%20List%20%E2%80%93%20Django%20REST%20framework_tiedostot/default.css">
+        
+      
+
+    
+  </head>
+
+  
+  <body class="">
+
+    <div class="wrapper">
+      
+        <div class="navbar navbar-static-top navbar-inverse" role="navigation" aria-label="navbar">
+          <div class="container">
+            <span>
+              
+                <a class="navbar-brand" rel="nofollow" href="https://www.django-rest-framework.org/">
+                    Django REST framework
+                </a>
+              
+            </span>
+            <ul class="nav navbar-nav pull-right">
+              
+                
+                  
+                
+              
+            </ul>
+          </div>
+        </div>
+      
+
+      <div class="container">
+        
+          <ul class="breadcrumb">
+            
+              
+                <li class="active"><a href="http://localhost:8000/events/api/venues/">Venue List</a></li>
+              
+            
+          </ul>
+        
+
+        <!-- Content -->
+        <div id="content" role="main" aria-label="content">
+          
+
+          <div class="region" aria-label="request form">
+          
+
+          
+            <form id="get-form" class="pull-right">
+              <fieldset>
+                
+                  <div class="btn-group format-selection">
+                    <a class="btn btn-primary js-tooltip" href="http://localhost:8000/events/api/venues/" rel="nofollow" title="" data-original-title="Make a GET request on the Venue List resource">GET</a>
+
+                    <button class="btn btn-primary dropdown-toggle js-tooltip" data-toggle="dropdown" title="" data-original-title="Specify a format for the GET request">
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                      
+                        <li>
+                          <a class="js-tooltip format-option" href="http://localhost:8000/events/api/venues/?format=json" rel="nofollow" title="" data-original-title="Make a GET request on the Venue List resource with the format set to `json`">json</a>
+                        </li>
+                      
+                        <li>
+                          <a class="js-tooltip format-option" href="http://localhost:8000/events/api/venues/?format=api" rel="nofollow" title="" data-original-title="Make a GET request on the Venue List resource with the format set to `api`">api</a>
+                        </li>
+                      
+                    </ul>
+                  </div>
+                
+              </fieldset>
+            </form>
+          
+
+          
+            <form class="button-form" action="/events/api/venues/" data-method="OPTIONS">
+              <button class="btn btn-primary js-tooltip" title="" data-original-title="Make an OPTIONS request on the Venue List resource">OPTIONS</button>
+            </form>
+          
+
+          
+
+          
+
+          
+
+          
+          </div>
+
+            <div class="content-main" role="main" aria-label="main content">
+              <div class="page-header">
+                <h1>Venue List</h1>
+              </div>
+              <div style="float:left">
+                
+                  <p></p>
+                
+              </div>
+
+              
+
+              <div class="request-info" style="clear: both" aria-label="request info">
+                <pre class="prettyprint"><b><span class="pln">GET</span></b><span class="pln"> </span><span class="pun">/</span><span class="pln">events</span><span class="pun">/</span><span class="pln">api</span><span class="pun">/</span><span class="pln">venues</span><span class="pun">/</span></pre>
+              </div>
+
+              <div class="response-info" aria-label="response info">
+                <pre class="prettyprint"><span class="meta nocode"><b>HTTP 200 OK</b>
+<b>Allow:</b> <span class="lit">GET, HEAD, OPTIONS</span>
+<b>Content-Type:</b> <span class="lit">application/json</span>
+<b>Vary:</b> <span class="lit">Accept</span>
+
+</span><span class="pun">[</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"YO-Talo"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://yo-talo.fi/tapahtumat" rel="nofollow"><span class="str">https://yo-talo.fi/tapahtumat</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/images/default_yotalo.png"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Tapahtumapaikka: Vastavirta-Klubi (alakerta)"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://vastavirta.net/" rel="nofollow"><span class="str">https://vastavirta.net/</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/images/default_vastavirta.png"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">3</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Tapahtumapaikka: Terassi Pub Yläkerta"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://vastavirta.net/" rel="nofollow"><span class="str">https://vastavirta.net/</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/images/default_vastavirta.png"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">4</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Pakkahuone"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://tullikamari.fi/tapahtumat/" rel="nofollow"><span class="str">https://tullikamari.fi/tapahtumat/</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/images/default_tullikamari.png"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">5</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Klubi"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://tullikamari.fi/tapahtumat/" rel="nofollow"><span class="str">https://tullikamari.fi/tapahtumat/</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/images/default_tullikamari.png"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">6</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Telakka"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://www.telakka.eu/ohjelma/" rel="nofollow"><span class="str">https://www.telakka.eu/ohjelma/</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/images/default_telakka.jpg"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">7</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Tavara-Asema"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://tavara-asema.fi/ohjelma/" rel="nofollow"><span class="str">https://tavara-asema.fi/ohjelma/</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/images/default_tavaraasema.png"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">8</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Tampere-talo, Pieni sali"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://www.tampere-talo.fi/tapahtumat/?em_l=list" rel="nofollow"><span class="str">https://www.tampere-talo.fi/tapahtumat/?em_l=list</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/images/default_tamperetalo.jpg"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">9</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Nokia Arena"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://nokiaarena.fi/tapahtumat/" rel="nofollow"><span class="str">https://nokiaarena.fi/tapahtumat/</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/image/default_nokiaarena.jpg"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">10</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Tampere Filharmonia, Tampere-talo, Iso sali"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://www.tampere-talo.fi/tapahtumat/?em_l=list" rel="nofollow"><span class="str">https://www.tampere-talo.fi/tapahtumat/?em_l=list</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/images/default_tamperetalo.jpg"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">11</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Tuulensuun Palatsi, Tuulensuun Palatsi"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://www.tampere-talo.fi/tapahtumat/?em_l=list" rel="nofollow"><span class="str">https://www.tampere-talo.fi/tapahtumat/?em_l=list</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/images/default_tamperetalo.jpg"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">12</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Tampere Filharmonia, Tampere-talo, Pieni sali"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://www.tampere-talo.fi/tapahtumat/?em_l=list" rel="nofollow"><span class="str">https://www.tampere-talo.fi/tapahtumat/?em_l=list</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/images/default_tamperetalo.jpg"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">13</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Tampere-talo, Iso sali"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://www.tampere-talo.fi/tapahtumat/?em_l=list" rel="nofollow"><span class="str">https://www.tampere-talo.fi/tapahtumat/?em_l=list</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/images/default_tamperetalo.jpg"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">14</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Tampere-talo, Pääaula"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://www.tampere-talo.fi/tapahtumat/?em_l=list" rel="nofollow"><span class="str">https://www.tampere-talo.fi/tapahtumat/?em_l=list</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/images/default_tamperetalo.jpg"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">15</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Tampere-talo, koko talo"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://www.tampere-talo.fi/tapahtumat/?em_l=list" rel="nofollow"><span class="str">https://www.tampere-talo.fi/tapahtumat/?em_l=list</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/images/default_tamperetalo.jpg"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">16</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Tampere-talo, Aulaklubi"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://www.tampere-talo.fi/tapahtumat/?em_l=list" rel="nofollow"><span class="str">https://www.tampere-talo.fi/tapahtumat/?em_l=list</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/images/default_tamperetalo.jpg"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">17</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Paappa"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://paappa.fi/ohjelma/" rel="nofollow"><span class="str">https://paappa.fi/ohjelma/</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/images/default_paappa.png"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">18</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Olympia"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://olympiakortteli.fi/keikat/" rel="nofollow"><span class="str">https://olympiakortteli.fi/keikat/</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/default_olympia.jpg"</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">19</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"G Livelab"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"website"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://glivelab.fi/tampere/?show_all=1" rel="nofollow"><span class="str">https://glivelab.fi/tampere/?show_all=1</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"venue_img"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"/static/images/default_glivelab.png"</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">]</span></pre>
+              </div>
+            </div>
+
+            
+              
+
+              
+            
+          
+        </div><!-- /.content -->
+      </div><!-- /.container -->
+    </div><!-- ./wrapper -->
+
+    
+
+    
+      <script>
+        window.drf = {
+          csrfHeaderName: "X-CSRFTOKEN",
+          csrfToken: "74UTguX9XoiqoWUJRKQTaMIsonO6c05qI9DWM0qo2yMgsk9cxmDvS0KKxyP1mxsz"
+        };
+      </script>
+      <script src="Venue%20List%20%E2%80%93%20Django%20REST%20framework_tiedostot/jquery-3.5.1.min.js"></script>
+      <script src="Venue%20List%20%E2%80%93%20Django%20REST%20framework_tiedostot/ajax-form.js"></script>
+      <script src="Venue%20List%20%E2%80%93%20Django%20REST%20framework_tiedostot/csrf.js"></script>
+      <script src="Venue%20List%20%E2%80%93%20Django%20REST%20framework_tiedostot/bootstrap.min.js"></script>
+      <script src="Venue%20List%20%E2%80%93%20Django%20REST%20framework_tiedostot/prettify-min.js"></script>
+      <script src="Venue%20List%20%E2%80%93%20Django%20REST%20framework_tiedostot/default.js"></script>
+      <script>
+        $(document).ready(function() {
+          $('form').ajaxForm();
+        });
+      </script>
+    
+
+  
+  
+
+</body></html>

@@ -21,7 +21,7 @@ from selenium.webdriver.edge.service import Service
 from selenium.webdriver.edge.options import Options
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, timedelta
 from events.models import Venue, Event
 from django.db import IntegrityError
 import time
@@ -48,7 +48,8 @@ def scrape_vastavirta(url):
         if h3:
             parts = h3.text.split(' - ', 1)
             if len(parts) == 2:
-                event['event_date'] = timezone.make_aware(datetime.strptime(parts[0][:10].strip(), '%d.%m.%Y'), pytz.timezone('Europe/Helsinki'))  # Convert to datetime
+                naive_date = datetime.strptime(parts[0][:10].strip(), '%d.%m.%Y')  # Convert to datetime
+                event['event_date'] = pytz.timezone('Europe/Helsinki').localize(naive_date) #make the date timezone aware
                 event['event_name'] = parts[1].strip()
 
         p_tags = div.find_all('p')
@@ -59,6 +60,7 @@ def scrape_vastavirta(url):
         if a_tag:
             event['event_link'] = a_tag['href']
 
+
         # Create and save Venue instance
         venue, created = Venue.objects.update_or_create(
             name=event['event_venue'],
@@ -67,7 +69,7 @@ def scrape_vastavirta(url):
             'venue_img': static('images/default_vastavirta.png')  # Use a default image
             }  
         )
-
+        
         # Create and save Event instance
         try:
             Event.objects.update_or_create(
@@ -76,6 +78,7 @@ def scrape_vastavirta(url):
                 event_date=event['event_date'],
                 website=url
             )
+            
         except IntegrityError as IEr:
             print(f"Integrity Error: {IEr}")
             
@@ -90,7 +93,8 @@ def scrape_yotalo(url):
         year = datetime.now().year  # Get the current year
 
         # Parse the date string and add the current year
-        date = timezone.make_aware(datetime.strptime(date_str, '%d.%m.%Y'), pytz.timezone('Europe/Helsinki'))
+        naive_date = datetime.strptime(date_str, '%d.%m.%Y')
+        date = pytz.timezone('Europe/Helsinki').localize(naive_date) #make the date timezone aware
 
         # If the date is in the past, add one to the year and parse again
         if date < timezone.make_aware(datetime.now(), pytz.timezone('Europe/Helsinki')):
@@ -132,13 +136,22 @@ def scrape_tullikamari(url):
     for event in events:
         date_str_1 = event.find('div', class_='event-feed-item__date').text
         date_str = ''.join(x for x in date_str_1 if x.isdigit()) 
-        date = timezone.make_aware(datetime.strptime(date_str, '%d%m%Y'), pytz.timezone('Europe/Helsinki'))  # Now the date f)ormat includes the year
+        naive_date = datetime.strptime(date_str, '%d%m%Y')
+        date = pytz.timezone('Europe/Helsinki').localize(naive_date) #make the date timezone aware
 
+        # Print for debugging
+        current_date = timezone.now().astimezone(pytz.timezone('Europe/Helsinki'))
+        print("date_str1:", date_str_1)
+        print("date_str:", date_str)
+        print("naive_date", naive_date)
+        print("Extracted Date:", date)
+        print("Current Date:", current_date)
+        
         image = event.find('img')['src']
         event_name = event.find('h2', class_='event-artist').text
         venue_name = event.find('li', class_='event-venue').text
         event_link = event.find('a', class_="event-link")
-        
+        print(event_name)
         # Create and save Venue instance
         venue, created = Venue.objects.update_or_create(
             name=venue_name,
@@ -184,9 +197,8 @@ def scrape_telakka(url):
 
         for key, value in split_event.items():
             date_str = key + str(datetime.now().year)  # Add the current year
-            date = timezone.make_aware(datetime.strptime(date_str, '%d.%m.%Y'), pytz.timezone('Europe/Helsinki'))  # Now the date f)ormat includes the year
-            if date < timezone.make_aware(datetime.now(), pytz.timezone('Europe/Helsinki')):
-                date = timezone.make_aware(datetime.strptime(date_str + '.' + str(datetime.now()).year + 1), '%d.%m.%Y', pytz.timezone('Europe/Helsinki'))
+            naive_date = datetime.strptime(date_str, '%d.%m.%Y')
+            date = pytz.timezone('Europe/Helsinki').localize(naive_date) #make the date timezone aware
 
             # Create and save Venue instance
             venue, created = Venue.objects.update_or_create(
@@ -218,7 +230,8 @@ def scrape_tavaraasema(url):
         date_str_1 = event.find('div', class_='event-feed-item__date').text
         date_str_2 = ''.join(x for x in date_str_1 if x.isdigit())
         date_str = date_str_2 + str(datetime.now().year)
-        date = timezone.make_aware(datetime.strptime(date_str, '%d%m%Y'), pytz.timezone('Europe/Helsinki'))  # Now the date f)ormat includes the year
+        naive_date = datetime.strptime(date_str, '%d%m%Y')
+        date = pytz.timezone('Europe/Helsinki').localize(naive_date) #make the date timezone aware
 
         image = event.find('img')['src']
         event_name = event.find('h2', class_='event-artist').text
@@ -341,7 +354,8 @@ def scrape_tamperetalo(url):
         if date_div:
             time_tag = date_div.find('time')
             if time_tag:
-                event['event_date'] = timezone.make_aware(datetime.strptime(time_tag['datetime'], '%d.%m.%Y'), pytz.timezone('Europe/Helsinki'))
+                naive_date = datetime.strptime(time_tag['datetime'], '%d.%m.%Y')
+                event['event_date'] = pytz.timezone('Europe/Helsinki').localize(naive_date) #make the date timezone aware
 
         image_div = article.find('div', class_='em-block-event-card__image')
         if image_div:
@@ -411,7 +425,8 @@ def scrape_paappa(url):
     
         if len(parts) == 3:
             date_str = parts[0][3:].strip() + '.' + parts[1].strip() + '.' + str(datetime.now().year)  # Add the current year
-            date = timezone.make_aware(datetime.strptime(date_str, '%d.%m.%Y'), pytz.timezone('Europe/Helsinki'))  # Now the date f)ormat includes the year
+            naive_date = datetime.strptime(date_str, '%d.%m.%Y')
+            date = pytz.timezone('Europe/Helsinki').localize(naive_date) #make the date timezone aware
 
             event_name = parts[2].strip()
 
@@ -439,15 +454,14 @@ def scrape_olympia(url):
     for event in events:
         dates = event.find_all(lambda date_tag: date_tag.name == 'p' and date_tag.find('span', class_='viikonpaiva'))
         image = event.find('img')['src']
-        event_name_str = event.find('div', class_='infot').text[2:].split('\n')
+        event_name_str = event.find('div', class_='infot').text[1:].split('\n')
         event_name = event_name_str[0]
         tickets_link = event.find('a', class_="button")
 
         for date in dates:
             date_str = date.text[2:]
-            date = timezone.make_aware(datetime.strptime(date_str, '%d.%m.%Y'), pytz.timezone('Europe/Helsinki'))  # Now the date f)ormat includes the year
-            if date < timezone.make_aware(datetime.now(), pytz.timezone('Europe/Helsinki')):
-                date = timezone.make_aware(datetime.strptime(date_str[-1] + 1, '%d.%m.%Y'), pytz.timezone('Europe/Helsinki'))
+            naive_date = datetime.strptime(date_str, '%d.%m.%Y')
+            date = pytz.timezone('Europe/Helsinki').localize(naive_date) #make the date timezone aware
 
             # Create and save Venue instance
             venue, created = Venue.objects.update_or_create(
@@ -483,8 +497,9 @@ def scrape_nokiaarena(url):
         meta_div = div.find('div', class_='events__meta')
         if meta_div:
             date_str = meta_div.find('span', class_='events__date').text.strip() + meta_div.find('span', class_='events__year').text.strip()
-            date = timezone.make_aware(datetime.strptime(date_str[:6] + str(datetime.now().year), '%d.%m.%Y'), pytz.timezone('Europe/Helsinki'))  # Convert to datetime
-
+            naive_date = datetime.strptime(date_str[:6] + str(datetime.now().year), '%d.%m.%Y')  # Convert to datetime
+            date = pytz.timezone('Europe/Helsinki').localize(naive_date) #make the date timezone aware
+            
         image_tag = div.find('img', class_='events__image')
         if image_tag:
             event['image_url'] = image_tag['src']
@@ -571,7 +586,8 @@ def scrape_glivelab(url):
         # Combine date and time into a single string and convert to datetime
         datetime_str = f"{date_str}"
         if datetime_str != "N/A":
-            event_date = timezone.make_aware(datetime.strptime(datetime_str.split()[0] + str(datetime.now().year), '%d.%m.%Y'), pytz.timezone('Europe/Helsinki'))  # Replace with yo)ur date and time format
+            naive_date = datetime.strptime(datetime_str.split()[0] + str(datetime.now().year), '%d.%m.%Y')  # Replace with your date and time format
+            event_date = pytz.timezone('Europe/Helsinki').localize(naive_date) #make the date timezone aware
         else:
             event_date = timezone.make_aware(datetime.strptime("31.12.2099", '%d.%m.%Y'), pytz.timezone('Europe/Helsinki')) # Set a date that can )be recognised for error
             
