@@ -96,10 +96,6 @@ def scrape_yotalo(url):
         naive_date = datetime.strptime(date_str, '%d.%m.%Y')
         date = pytz.timezone('Europe/Helsinki').localize(naive_date) #make the date timezone aware
 
-        # If the date is in the past, add one to the year and parse again
-        if date < timezone.make_aware(datetime.now(), pytz.timezone('Europe/Helsinki')):
-            date = timezone.make_aware(datetime.strptime(date_str + '.' + str)(year + 1), '%d.%m.%Y', pytz.timezone('Europe/Helsinki'))
-
         image = event.find('img')['src']
         event_name = event.find('div', class_='mt-md-3').text
 #        event_info = event.find('div', class_='fs-6').text
@@ -137,21 +133,12 @@ def scrape_tullikamari(url):
         date_str_1 = event.find('div', class_='event-feed-item__date').text
         date_str = ''.join(x for x in date_str_1 if x.isdigit()) 
         naive_date = datetime.strptime(date_str, '%d%m%Y')
-        date = pytz.timezone('Europe/Helsinki').localize(naive_date) #make the date timezone aware
-
-        # Print for debugging
-        current_date = timezone.now().astimezone(pytz.timezone('Europe/Helsinki'))
-        print("date_str1:", date_str_1)
-        print("date_str:", date_str)
-        print("naive_date", naive_date)
-        print("Extracted Date:", date)
-        print("Current Date:", current_date)
-        
+        date = pytz.timezone('Europe/Helsinki').localize(naive_date) #make the date timezone aware       
         image = event.find('img')['src']
         event_name = event.find('h2', class_='event-artist').text
         venue_name = event.find('li', class_='event-venue').text
         event_link = event.find('a', class_="event-link")
-        print(event_name)
+
         # Create and save Venue instance
         venue, created = Venue.objects.update_or_create(
             name=venue_name,
@@ -215,6 +202,7 @@ def scrape_telakka(url):
                     venue=venue,
                     event_name=value,
                     event_date=date,
+                    event_img = static('images/default_telakka.jpg'),  # Use a default image
                     website=url,  # Use the url as the event's website
                 )
             except IntegrityError as IEr:
@@ -269,7 +257,7 @@ def scrape_tamperetalo(url):
     # Setup Edge options
     edge_options = Options()
     edge_options.use_chromium = True
-#    edge_options.add_argument("--headless")  # Ensure GUI is off
+    # edge_options.add_argument("--headless")  # Commented since it seems not work headless
     edge_options.add_argument("--disable-gpu")
     edge_options.add_argument("--no-sandbox")
     edge_options.add_argument("--disable-dev-shm-usage")

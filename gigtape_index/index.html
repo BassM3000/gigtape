@@ -4,6 +4,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald&display=swap" rel="stylesheet">
+
         <title>GigTape - Keikat Tampereella</title>
         <link rel="stylesheet" href="./style.css">
         <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
@@ -13,7 +17,10 @@
         <div class="navi-container">
             <div class="navi-bar">
                 <span class="link">ABOUT</span>
-                <span class="link">ANOTHER LINK</span>
+                <div>
+                <label for="datePicker">VALITSE PÄIVÄ:</label>
+                <input type="date" id="datePicker" onchange="loadEvents()">
+                </div>
             </div>
         </div>
             <div class="header">

@@ -16,7 +16,7 @@ body {
 }
 
 .navi-bar {
-    width: 200px;
+    width: 50%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -41,6 +41,8 @@ body {
     background-size: contain;
     width: 956px;
     height: 318px;
+    border: 5px solid black;
+    border-radius: 10px;
 }
 
 h2 {
@@ -102,24 +104,74 @@ h2 {
 }
 
 .event-img {
+    background-image: url(./images/default_venue_image.png);
+    background-size: cover;
+    background-position: center;
     background-color: rgb(38, 41, 38);
-    height: 70%;
+    height: 80%;
     border-radius: 10px 10px 0px 0px;
 }
 
-.event-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-    border-radius: 10px
-}
-
 .event-info {
+    font-family: 'Bebas Neue', sans-serif;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    align-items: space-between;
     background-color: rgb(38, 41, 38);
-    height: 30%;
+    height: 10em;
     color: orange;
     border-radius: 0px 0px 10px 10px;
+}
+
+.event-name {
+    font-weight: 400;
+    font-size: clamp(18px, 1.5vw, 26px);
+}
+
+.event-date {
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.event-venue {
+    font-weight: 400;
+    font-size: clamp(18px, 1.8vw, 26px);
+    display: flex;
+}
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .navi-bar {
+        width: 90%;
+    }
+
+    .event-card {
+        width: 66%; /* Adjusted width for smaller screens */
+    }
+
+    .header {
+        height: 150px; /* Adjusted height for smaller screens */
+    }
+
+    .header-img {
+        width: 100%; /* Full width for smaller screens */
+    }
+
+    h2 {
+        font-size: medium; /* Adjusted font size for smaller screens */
+    }
+
+    .event-content {
+        padding: 10px; /* Adjusted padding for smaller screens */
+    }
+
+    .load-more-button {
+        padding-top: 10px; /* Adjusted padding for smaller screens */
+    }
+    .event-name {
+        font-size: 18px; /* Adjusted font size for smaller screens */
+    }
+    .event-venue {
+        font-size: 22px; /* Adjusted font size for smaller screens */
+    }
 }
